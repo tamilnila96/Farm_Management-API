@@ -58,4 +58,7 @@ public class LocationController {
 	public List<District> findByStateId(@PathVariable UUID id){
 		return locationservice.getDistrictsbyStateId(id);
 	}
+	
+	@PutMapping("/country/{id}")
+	
 }

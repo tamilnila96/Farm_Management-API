@@ -52,4 +52,23 @@ public class LocationService {
 	public List<District> getDistrictsbyStateId(UUID id){
 		return districtrepo.findByStateId(id);
 	}
+	
+	public Country updateCountry(UUID id, Country updatedCountry) {
+		Country existingcountry = countryrepo.findById(id).
+				orElseThrow(() -> new RuntimeException("Country not found"));
+		existingcountry.setName(updatedCountry.getName());
+		if(updatedCountry.getState()!=null) {
+			for(State state:updatedCountry.getState()) {
+				state.setCountry(existingcountry);
+			}
+			existingcountry.setState(updatedCountry.getState());		
+			
+		}
+		return countryrepo.save(existingcountry);
+	}
+	
+	public State updatedState(UUID id, State updatedState) {
+		State existingState = staterepo.findById(id).orElseThrow(()-> new RuntimeException("State not found");
+		existingstate.
+	}
 }
